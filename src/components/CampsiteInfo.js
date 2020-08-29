@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+ import React, { Component } from 'react'
 import {Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody,  Label} from 'reactstrap'; 
 import {Link} from "react-router-dom";
 import {LocalForm, Control, Errors} from "react-redux-form";
@@ -23,8 +23,9 @@ class CommentForm extends Component{
 }
 
 handleSubmit(values){
-  this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
   this.toggleModal();
+  this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
+  
 };
 
 toggleNav(){
@@ -122,7 +123,7 @@ render(){
       </div>
     )
   };
-  function RenderComments({comments,addComment, campsiteId}){
+  function RenderComments({comments,postComment, campsiteId}){
     if(comments != null){
       return(
         <div key={comments.id} className="col-md-5 m-1">
@@ -133,7 +134,7 @@ render(){
             <p>-{n.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(n.date)))}</p>
             </div>
             )} 
-            <CommentForm campsiteId={campsiteId} addComment={addComment}/>
+            <CommentForm campsiteId={campsiteId} postComment={postComment}/>
         </div>
       )
     } return <div></div>
@@ -176,8 +177,8 @@ render(){
           <div className="row">
             <RenderCampsite campsite={props.campsite} />
             <RenderComments
-             comments ={props.comments}
-             addComment={props.addComment} 
+             comments = {props.comments}
+             postComment={props.postComment} 
              campsiteId ={props.campsiteId}/>
           </div>
        </div>
