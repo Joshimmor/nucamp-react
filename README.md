@@ -1,3 +1,13 @@
+## NuCamp
+React project that was completed as I going through NuCamp Bootcamp
+This project uses:
+React Redux
+React Router
+React-strap
+Api requests using Fetch 
+-the api was a locally hosted json file on localhost:3001/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
